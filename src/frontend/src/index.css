@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "GeneralSans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BricolageGrotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Light mode (fallback, app is dark by default) */
+    --background: 0.98 0 0;
+    --foreground: 0.12 0.01 265;
+    --card: 0.96 0.005 265;
+    --card-foreground: 0.12 0.01 265;
+    --popover: 0.97 0 0;
+    --popover-foreground: 0.12 0.01 265;
+    --primary: 0.55 0.2 265;
+    --primary-foreground: 0.99 0 0;
+    --secondary: 0.93 0.005 265;
+    --secondary-foreground: 0.25 0.01 265;
+    --muted: 0.93 0.005 265;
+    --muted-foreground: 0.52 0.01 265;
+    --accent: 0.55 0.2 265;
+    --accent-foreground: 0.99 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.99 0 0;
+    --border: 0.88 0.005 265;
+    --input: 0.88 0.005 265;
+    --ring: 0.55 0.2 265;
+    --chart-1: 0.55 0.2 265;
+    --chart-2: 0.65 0.15 195;
+    --chart-3: 0.72 0.18 145;
+    --chart-4: 0.68 0.22 310;
+    --chart-5: 0.62 0.2 30;
+    --sidebar: 0.97 0.005 265;
+    --sidebar-foreground: 0.12 0.01 265;
+    --sidebar-primary: 0.55 0.2 265;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.93 0.005 265;
+    --sidebar-accent-foreground: 0.25 0.01 265;
+    --sidebar-border: 0.88 0.005 265;
+    --sidebar-ring: 0.55 0.2 265;
+  }
+
+  .dark {
+    /* Background: #0B0D10 -> oklch(0.115 0.008 265) */
+    --background: 0.115 0.008 265;
+    /* Foreground: #F2F4F7 -> oklch(0.962 0.008 265) */
+    --foreground: 0.962 0.008 265;
+    /* Card: #161A1F -> oklch(0.155 0.01 265) */
+    --card: 0.155 0.01 265;
+    --card-foreground: 0.962 0.008 265;
+    /* Popover: #1B2026 -> oklch(0.175 0.012 265) */
+    --popover: 0.175 0.012 265;
+    --popover-foreground: 0.962 0.008 265;
+    /* Primary/Accent blue: #2F80ED -> oklch(0.57 0.2 265) */
+    --primary: 0.57 0.2 265;
+    --primary-foreground: 0.99 0 0;
+    /* Secondary: #1B2026 */
+    --secondary: 0.195 0.012 265;
+    --secondary-foreground: 0.962 0.008 265;
+    /* Muted: #242A32 -> oklch(0.215 0.014 265) */
+    --muted: 0.215 0.014 265;
+    --muted-foreground: 0.61 0.012 265;
+    /* Accent blue */
+    --accent: 0.57 0.2 265;
+    --accent-foreground: 0.99 0 0;
+    /* Destructive */
+    --destructive: 0.65 0.22 22;
+    --destructive-foreground: 0.99 0 0;
+    /* Border: #242A32 at low opacity */
+    --border: 0.265 0.014 265;
+    --input: 0.215 0.014 265;
+    --ring: 0.57 0.2 265;
+    /* Charts */
+    --chart-1: 0.57 0.2 265;
+    --chart-2: 0.62 0.18 195;
+    --chart-3: 0.68 0.19 145;
+    --chart-4: 0.62 0.22 310;
+    --chart-5: 0.65 0.18 30;
+    --sidebar: 0.155 0.01 265;
+    --sidebar-foreground: 0.962 0.008 265;
+    --sidebar-primary: 0.57 0.2 265;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.215 0.014 265;
+    --sidebar-accent-foreground: 0.962 0.008 265;
+    --sidebar-border: 0.265 0.014 265;
+    --sidebar-ring: 0.57 0.2 265;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+  }
+
+  /* Mobile safe area */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--muted));
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--primary));
+  }
+
+  /* Smooth scrolling */
+  * {
+    scroll-behavior: smooth;
+  }
+
+  /* Input font size fix for iOS */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
